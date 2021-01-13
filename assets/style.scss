@@ -1,0 +1,711 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+}
+$bg-gradient: linear-gradient(-81deg, #ff8a80, #b71c1c);
+$white: #fff;
+$gray: #bdbdbd;
+$red: #b71c1c;
+$darkgray: #505050;
+$lightred: #ff8a80;
+$lightredopa: #ff8b8094;
+@mixin form {
+  form {
+    width: 60%;
+    padding: 10px;
+    div {
+      width: 100%;
+    }
+    .head {
+      p {
+        font-weight: 600;
+        color: $red;
+        font-size: 2rem;
+        text-transform: uppercase;
+        line-height: 3;
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+    }
+    .input {
+      display: flex;
+      width: 100%;
+      height: 45px;
+      margin: 10px 0;
+      flex-direction: row;
+      border-radius: 10px;
+      background-color: $gray;
+      label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 10%;
+        padding: 0 10px;
+        color: $darkgray;
+      }
+      input {
+        flex-basis: 80%;
+        outline: none;
+        border: none;
+        padding: 10px;
+        font-size: 1.2rem;
+        background: none;
+        &::placeholder {
+          color: $darkgray;
+          font-weight: 500;
+          font-size: 1rem;
+        }
+      }
+    }
+    .fp {
+      padding: 10px;
+      a {
+        text-align: center;
+        color: black;
+        font-weight: 600;
+        text-transform: capitalize;
+        font-size: 1rem;
+      }
+    }
+    .submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        @include button(auto, 40px);
+        padding: 0 15px;
+        border: 2px solid $red;
+        text-transform: capitalize;
+        font-size: 1rem;
+        color: $red;
+        font-weight: 700;
+        border-radius: 10px;
+        &:hover {
+          color: $white;
+          background-color: $red;
+        }
+      }
+    }
+  }
+}
+@mixin button($width, $height) {
+  width: $width;
+  height: $height;
+  outline: none;
+  cursor: pointer;
+  background: none;
+}
+@mixin formswrapper {
+  position: relative;
+  z-index: 4;
+  transition: 0.5s all ease-in-out;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  .panel-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .head {
+      padding: 20px;
+      width: 40%;
+      margin-top: 30px;
+      z-index: 3;
+      p {
+        &:first-child {
+          font-size: 2rem;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        color: $white;
+        font-size: 1.2rem;
+      }
+      button {
+        @include button(100px, 45px);
+        border: 2px solid $white;
+        border-radius: 5px;
+        color: $white;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+        margin-top: 10px;
+        &:hover {
+          background-color: $white;
+          color: #b71c1c;
+        }
+      }
+    }
+    .image {
+      z-index: 2;
+      width: 70%;
+      transform: translateX(-30%);
+      transform: translateY(-10%);
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .form {
+    transform: translateY(60px);
+    width: 100%;
+    @include form;
+  }
+  .socials {
+    margin-top: 20px;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    a {
+      color: #505050;
+      font-size: 1.6rem;
+    }
+  }
+}
+@mixin nav {
+  display: flex;
+  justify-content: space-between;
+  li {
+    flex-basis: 20%;
+    display: flex;
+    a {
+      width: 80%;
+      height: 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $red;
+      border-radius: 10px;
+      position: relative;
+      &::before {
+        content: "";
+        width: 0%;
+        height: 5px;
+        background-color: $red;
+        position: absolute;
+        top: 100%;
+        transition: 0.3s all;
+      }
+      &:hover {
+        &::before {
+          width: 80%;
+        }
+      }
+    }
+  }
+  .times {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  body {
+    overflow: hidden;
+    height: 100%;
+    .container {
+      .header {
+        width: 100%;
+        height: 60px;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 20% 50% 20%;
+        .brand {
+          a.brand {
+            color: $red;
+            font-weight: 600;
+            font-size: 2rem;
+          }
+        }
+
+        nav {
+          .search-holder {
+            display: none;
+          }
+          ul {
+            @include nav;
+          }
+        }
+        .input {
+          background-color: $lightredopa;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 15px;
+          input {
+            outline: none;
+            border: none;
+            background: none;
+            flex-basis: 80%;
+            font-size: 1rem;
+            padding: 0 10px;
+          }
+          button {
+            @include button(auto, auto);
+            border: none;
+            display: none;
+          }
+          i {
+            font-size: 1.1rem;
+            flex-basis: 20%;
+          }
+          a {
+            color: black;
+          }
+          .bars {
+            display: none;
+          }
+        }
+      }
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 100%);
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        .div-one {
+          opacity: 1;
+          padding-left: 50px;
+          transform: translateX(0%);
+          @include formswrapper;
+          form {
+            margin-left: 180px;
+          }
+          .socials {
+            margin-left: 80px;
+          }
+        }
+        .div-two {
+          padding-right: 50px;
+          opacity: 1;
+          transform: translateX(0%);
+
+          @include formswrapper;
+          .panel-right {
+            order: 2;
+            align-items: flex-end;
+            p {
+              text-align: right;
+            }
+            button {
+              display: block;
+              margin-left: auto;
+            }
+          }
+          form {
+            order: 1;
+
+            margin-left: 60px;
+          }
+          .socials {
+            margin-left: 50px;
+          }
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          background-image: $bg-gradient;
+          width: 2000px;
+          height: 2000px;
+          top: -30%;
+          left: -75%;
+          border-radius: 50%;
+          transition: 0.5s all;
+          z-index: 1;
+        }
+      }
+
+      .wrapper-signin {
+        .div-one {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        .div-two {
+          opacity: 1;
+          transform: translateX(-100%);
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          background-image: $bg-gradient;
+          // width: 1000px;
+          // height: 800px;
+          left: 30%;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+  @mixin formSm {
+    form {
+      width: 80%;
+      div {
+        width: 100%;
+      }
+      .head {
+        p {
+          font-weight: 600;
+          font-size: 2rem;
+          text-transform: uppercase;
+          line-height: 3;
+          display: inline-block;
+          padding-bottom: 5px;
+        }
+      }
+      .input {
+        display: flex;
+        width: 100%;
+        height: 45px;
+        margin: 10px 0;
+        flex-direction: row;
+        border-radius: 10px;
+        label {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-basis: 10%;
+          padding: 0 10px;
+          color: $darkgray;
+        }
+        input {
+          flex-basis: 80%;
+          outline: none;
+          border: none;
+          padding: 10px;
+          font-size: 1.2rem;
+          background: none;
+          &::placeholder {
+            color: $darkgray;
+            font-weight: 500;
+            font-size: 1rem;
+          }
+        }
+      }
+      .fp {
+        padding: 10px;
+        a {
+          text-align: center;
+          color: black;
+          font-weight: 600;
+          text-transform: capitalize;
+          font-size: 1rem;
+        }
+      }
+      .submit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+          @include button(auto, 40px);
+          padding: 0 15px;
+          text-transform: capitalize;
+          font-size: 1rem;
+          font-weight: 700;
+          border-radius: 10px;
+        }
+      }
+      .socials {
+        margin-left: 50px;
+      }
+    }
+  }
+  @mixin formswrapperSm {
+    position: relative;
+    z-index: 4;
+    transition: 0.5s all ease-in-out;
+    width: 100%;
+    grid-template-rows: repeat(2, 50%);
+    height: 100%;
+    display: grid;
+    .panel-right {
+      padding: 10px;
+      width: 100%;
+
+      .head {
+        width: 100%;
+        margin-top: 30px;
+        z-index: 3;
+        p {
+          &:first-child {
+            font-size: 2rem;
+            font-weight: 500;
+            padding-bottom: 10px;
+          }
+          font-size: 1.2rem;
+        }
+        button {
+          border-radius: 5px;
+          padding: 10px;
+          font-weight: 600;
+          font-size: 1rem;
+          margin-top: 10px;
+          border-width: 2px;
+        }
+      }
+      .image {
+        z-index: 2;
+        width: 70%;
+        // transform: translateX(-30%);
+        // transform: translateY(-10%);
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      @include formSm;
+    }
+    .socials {
+      margin-top: 20px;
+      width: 80%;
+      display: grid;
+      grid-template-columns: repeat(3, 30%);
+      a {
+        color: #505050;
+        font-size: 1.6rem;
+      }
+    }
+  }
+  body {
+    height: 800px;
+    .container {
+      .header {
+        width: 100%;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        .brand {
+          order: 1;
+          a.brand {
+            color: $red;
+            font-weight: 600;
+            font-size: 2rem;
+          }
+        }
+
+        nav {
+          order: 3;
+          width: 100%;
+          .search-holder {
+            display: none;
+            width: 100%;
+            li {
+              width: 100%;
+              display: block;
+              // padding: px;
+              input {
+                padding: 10px 10px;
+                border-radius: 15px;
+                outline: none;
+                border: 1px solid $gray;
+                font-size: 1rem;
+                width: 300px;
+              }
+              button {
+                @include button(50px, 50px);
+                border: none;
+                font-size: 2rem;
+              }
+            }
+          }
+          .nav-holder {
+            display: none;
+          }
+          ul {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: $white;
+            // grid-template-rows: repeat(5, 20%);
+            li {
+              padding: 10px;
+              a {
+                display: block;
+                width: 100%;
+                color: black;
+                font-size: 1.1rem;
+                position: relative;
+                transition: 0.3s all;
+                &:hover {
+                  color: $gray;
+                  font-size: 1.3rem;
+                }
+              }
+            }
+            button {
+              @include button(40px, 40px);
+              border: none;
+              font-size: 1.5rem;
+            }
+          }
+        }
+        .input {
+          order: 2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 15px;
+          input {
+            display: none;
+          }
+          a {
+            display: none;
+          }
+          i {
+            font-size: 1.1rem;
+            flex-basis: 20%;
+          }
+          button {
+            @include button(auto, auto);
+            border: none;
+            flex-basis: 50%;
+          }
+        }
+      }
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 100%);
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        .div-one {
+          opacity: 1;
+          width: 100%;
+          transform: translateX(0%);
+          @include formswrapperSm;
+          .head {
+            color: $white;
+          }
+          .panel-right {
+            button {
+              @include button(100px, 45px);
+              border: 2px solid $white;
+              color: $white;
+              &:hover {
+                background-color: $white;
+                color: #b71c1c;
+              }
+              .image {
+                transform: translateX(50%);
+              }
+            }
+          }
+          form {
+            // margin-left: 180px;
+            .head {
+              color: $red;
+            }
+            .input {
+              background-color: $gray;
+            }
+            .submit {
+              button {
+                border: 2px solid $red;
+                color: $red;
+                &:hover {
+                  color: $white;
+                  background-color: $red;
+                }
+              }
+            }
+          }
+          .socials {
+          }
+        }
+        .div-two {
+          @include formswrapperSm;
+          .head {
+            color: $red;
+          }
+          .panel-right {
+            p {
+              text-align: right;
+            }
+            button {
+              display: block;
+              transform: translateX(200%);
+              @include button(100px, 45px);
+              border: 2px solid $red;
+              color: $red;
+              &:hover {
+                background-color: $red;
+                color: $white;
+              }
+            }
+          }
+          form {
+            .head {
+              p {
+                color: $white;
+              }
+            }
+            .input {
+              background-color: $white;
+            }
+            .submit {
+              button {
+                border: 2px solid $white;
+                color: $white;
+                &:hover {
+                  color: $red;
+                  background-color: $white;
+                }
+              }
+            }
+          }
+          .socials {
+            a {
+              color: $white;
+            }
+          }
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          background-image: $bg-gradient;
+          width: 1000px;
+          height: 1000px;
+          top: -80%;
+          left: -85%;
+          border-radius: 50%;
+          transition: 0.5s all;
+          z-index: 1;
+        }
+      }
+
+      .wrapper-signin {
+        .div-one {
+          opacity: 0;
+          transform: translateX(-100%);
+        }
+        .div-two {
+          opacity: 1;
+          transform: translateX(-100%);
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          background-image: $bg-gradient;
+          top: 40%;
+        }
+      }
+    }
+  }
+}
